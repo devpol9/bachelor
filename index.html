@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Beachfront Ultimatum</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@600;700&family=VT323&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ocean:#0d7c8f;
+    --sand:#fce4c8;
+    --coral:#ff6b5a;
+    --lime:#7cff3d;
+    --sky:#87ceeb;
+    --deep-ocean:#053d47;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg, #ffecd2 0%, #fcb69f 50%, #c4e7f9 100%);
+    color:var(--deep-ocean);
+    min-height:100vh;
+    display:flex;justify-content:center;
+    padding:24px 14px 60px;
+    position:relative;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;bottom:0;left:0;right:0;height:200px;
+    background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,50 Q300,10 600,50 T1200,50 L1200,120 L0,120 Z" fill="%230d7c8f" opacity="0.3"/><path d="M0,60 Q200,30 400,60 T800,60 T1200,60 L1200,120 L0,120 Z" fill="%230d7c8f" opacity="0.5"/></svg>') repeat-x;
+    background-size:auto 100%;
+    pointer-events:none;
+  }
+  .card{
+    width:100%;max-width:540px;
+    background:linear-gradient(135deg, var(--sand) 0%, #fdf0e0 100%);
+    border:2px solid var(--coral);
+    box-shadow:0 20px 60px rgba(13,124,143,.25), inset 0 0 60px rgba(124,255,61,.08);
+    padding:32px 26px;
+    position:relative;
+    z-index:10;
+    border-radius:12px;
+  }
+  .card::before{
+    content:"";position:absolute;top:-8px;left:20px;width:30px;height:30px;
+    background:var(--coral);border-radius:50%;opacity:.6;
+  }
+  .palm{
+    position:absolute;top:10px;right:16px;font-size:28px;opacity:.7;
+  }
+  .sun{position:absolute;top:14px;left:14px;font-size:32px}
+  .kicker{
+    font-family:'VT323',monospace;font-size:12px;letter-spacing:3px;
+    color:var(--ocean);text-align:center;margin-bottom:4px;text-transform:uppercase;
+  }
+  h1{
+    font-family:'Fredoka One',sans-serif;font-size:48px;line-height:1;
+    text-align:center;color:var(--ocean);margin:8px 0 3px;
+    text-shadow:2px 2px 0 rgba(124,255,61,.3);
+  }
+  .dates{
+    text-align:center;font-weight:700;color:var(--coral);
+    font-size:16px;letter-spacing:1px;margin:10px 0 16px;
+  }
+  .wave{
+    height:2px;background:linear-gradient(90deg, var(--ocean), var(--lime), var(--ocean));
+    margin:14px 0;border-radius:1px;
+  }
+  .body{font-size:15px;line-height:1.6;color:var(--deep-ocean)}
+  .body p{margin-bottom:12px}
+  .body strong{color:var(--coral)}
+  .demand{
+    background:linear-gradient(135deg, rgba(13,124,143,.12), rgba(124,255,61,.08));
+    border-left:4px solid var(--coral);border-radius:6px;
+    padding:14px 16px;font-weight:700;font-size:14px;
+    margin:16px 0;color:var(--deep-ocean);
+  }
+  .count-wrap{text-align:center;margin:24px 0 6px}
+  .count{
+    font-family:'Fredoka One',sans-serif;font-size:64px;
+    background:linear-gradient(135deg, var(--ocean), var(--lime));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    background-clip:text;line-height:1;
+  }
+  .count-lbl{
+    font-family:'VT323',monospace;font-size:13px;letter-spacing:2px;
+    color:var(--ocean);text-transform:uppercase;margin-top:2px;
+  }
+  .sign{margin-top:14px}
+  .sign label{
+    display:block;font-family:'VT323',monospace;font-size:13px;
+    letter-spacing:2px;text-transform:uppercase;color:var(--coral);
+    margin-bottom:6px;
+  }
+  .sign input{
+    width:100%;padding:13px 14px;font-family:'Poppins',sans-serif;font-size:16px;
+    background:#fffbf3;border:2px solid var(--ocean);color:var(--deep-ocean);
+    border-radius:6px;font-weight:600;
+  }
+  .sign input:focus{
+    outline:none;border-color:var(--lime);box-shadow:0 0 12px rgba(124,255,61,.4);
+  }
+  .sign input::placeholder{color:rgba(13,124,143,.4)}
+  button{
+    width:100%;margin-top:10px;padding:14px;cursor:pointer;
+    font-family:'Fredoka One',sans-serif;letter-spacing:1px;font-size:16px;
+    background:linear-gradient(135deg, var(--ocean), var(--coral));
+    color:white;border:none;border-radius:6px;font-weight:700;
+    transition:transform .08s ease, box-shadow .2s ease;
+    box-shadow:0 6px 16px rgba(13,124,143,.3);
+  }
+  button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 24px rgba(13,124,143,.4);
+  }
+  button:active{transform:translateY(0)}
+  button:disabled{
+    background:#bbb;cursor:default;box-shadow:none;
+  }
+  .signers{margin-top:20px}
+  .signers h3{
+    font-family:'VT323',monospace;font-size:13px;letter-spacing:2px;
+    text-transform:uppercase;color:var(--ocean);margin-bottom:10px;
+  }
+  .signers ul{
+    list-style:none;display:flex;flex-wrap:wrap;gap:6px;
+  }
+  .signers li{
+    font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;
+    background:rgba(13,124,143,.12);padding:6px 10px;border-radius:4px;
+    border:1px solid rgba(13,124,143,.3);color:var(--ocean);
+  }
+  .msg{
+    text-align:center;font-size:12px;color:var(--coral);min-height:18px;
+    margin-top:6px;font-weight:700;letter-spacing:.5px;
+  }
+  .note{
+    text-align:center;font-size:11px;color:var(--ocean);margin-top:16px;
+    letter-spacing:.5px;font-family:'VT323',monospace;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="sun">☀️</div>
+    <div class="palm">🌴</div>
+
+    <div class="kicker">The Official Declaration</div>
+    <h1>The Beachfront<br>Ultimatum</h1>
+    <div class="dates">⛱️ JUNE 11 – 14 ⛱️</div>
+
+    <div class="wave"></div>
+
+    <div class="body">
+      <p>We, the people, have gathered in the spirit of <strong>pure fairness</strong> to address a critical imbalance regarding the beach house situation for this crucial weekend.</p>
+      <p>The current arrangement is what we call a "vibe mismatch." Someone got oceanfront views. Someone got a sad parking situation. Someone got the master suite. Someone got a room that smells like old golf clubs.</p>
+      <p>This ends now.</p>
+      <div class="demand">🏝️ THE MEN SHALL DECIDE WHICH HOUSE THEY GET. This is non-negotiable. This is the petition. Sign below or forever hold your peace.</div>
+    </div>
+
+    <div class="count-wrap">
+      <div class="count" id="count">0</div>
+      <div class="count-lbl">SIGNATURES</div>
+    </div>
+
+    <div class="sign">
+      <label for="name">Sign The Ultimatum</label>
+      <input id="name" type="text" placeholder="Enter your name..." maxlength="40" autocomplete="off">
+      <button id="signBtn">SIGN & TESTIFY</button>
+      <div class="msg" id="msg"></div>
+    </div>
+
+    <div class="signers" id="signersWrap" style="display:none">
+      <h3>🌊 The Crew 🌊</h3>
+      <ul id="signers"></ul>
+    </div>
+
+    <div class="note">West Palm Beach justice. In the sand, in the sun, we stand united. ✌️</div>
+  </div>
+
+<script>
+  const KEY='beachfront-ultimatum-sigs';
+  const countEl=document.getElementById('count');
+  const listEl=document.getElementById('signers');
+  const wrapEl=document.getElementById('signersWrap');
+  const input=document.getElementById('name');
+  const btn=document.getElementById('signBtn');
+  const msg=document.getElementById('msg');
+
+  function render(sigs){
+    countEl.textContent=sigs.length;
+    if(sigs.length){
+      wrapEl.style.display='block';
+      listEl.innerHTML='';
+      sigs.slice().reverse().forEach(s=>{
+        const li=document.createElement('li');
+        li.textContent='🏄 '+s;
+        listEl.appendChild(li);
+      });
+    }
+  }
+
+  function load(){
+    try{
+      const stored=localStorage.getItem(KEY);
+      const sigs=stored?JSON.parse(stored):[];
+      render(sigs);
+      return sigs;
+    }catch(e){ return []; }
+  }
+
+  function sign(){
+    const name=input.value.trim();
+    if(!name){ msg.textContent='Drop your name to sign.'; return; }
+    btn.disabled=true;
+    try{
+      const sigs=load();
+      if(sigs.some(n=>n.toLowerCase()===name.toLowerCase())){
+        msg.textContent='You already signed, legend.';
+        btn.disabled=false;return;
+      }
+      sigs.push(name);
+      localStorage.setItem(KEY,JSON.stringify(sigs));
+      render(sigs);
+      input.value='';
+      msg.textContent='Signed. Justice in West Palm. 🌅';
+    }catch(e){
+      msg.textContent='Error saving — try again.';
+    }
+    btn.disabled=false;
+  }
+
+  btn.addEventListener('click',sign);
+  input.addEventListener('keydown',e=>{ if(e.key==='Enter') sign(); });
+  load();
+</script>
+</body>
+</html>
